@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_064825) do
+ActiveRecord::Schema.define(version: 2019_12_11_081727) do
 
   create_table "addresses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "add_postalcode"
     t.string "add_address"
     t.string "add_lastname"
     t.string "add_firstname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "admins", force: :cascade do |t|
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_064825) do
     t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artist_name"], name: "index_artists_on_artist_name"
   end
 
   create_table "cart_cds", force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_064825) do
     t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cd_title"], name: "index_cds_on_cd_title"
   end
 
   create_table "discs", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_064825) do
     t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genre_name"], name: "index_genres_on_genre_name"
   end
 
   create_table "interests", force: :cascade do |t|
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_064825) do
     t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["label_name"], name: "index_labels_on_label_name"
   end
 
   create_table "musics", force: :cascade do |t|
@@ -94,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_064825) do
     t.string "music_title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["music_title"], name: "index_musics_on_music_title"
   end
 
   create_table "order_cds", force: :cascade do |t|
