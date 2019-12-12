@@ -10,7 +10,129 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_053532) do
+ActiveRecord::Schema.define(version: 2019_12_11_064825) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "add_postalcode"
+    t.string "add_address"
+    t.string "add_lastname"
+    t.string "add_firstname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "admin_email", null: false
+    t.string "admin_password", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name", null: false
+    t.datetime "deleted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_cds", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cd_id"
+    t.integer "cart_count", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cds", force: :cascade do |t|
+    t.integer "artist_id"
+    t.integer "label_id"
+    t.integer "genre_id"
+    t.string "cd_title", null: false
+    t.string "jacket_image_id", null: false
+    t.datetime "release_date", null: false
+    t.integer "price", null: false
+    t.integer "status", null: false
+    t.datetime "deleted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "discs", force: :cascade do |t|
+    t.integer "cd_id", null: false
+    t.integer "disc_rank", null: false
+    t.string "disc_title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name", null: false
+    t.datetime "deleted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cd_id"
+    t.datetime "created_at", null: false
+    t.datetime "update_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name", null: false
+    t.datetime "deleted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "musics", force: :cascade do |t|
+    t.integer "disc_id", null: false
+    t.integer "music_rank", null: false
+    t.string "music_title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_cds", force: :cascade do |t|
+    t.integer "cd_id"
+    t.integer "order_id"
+    t.integer "order_cd_count", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "payment", null: false
+    t.integer "total", null: false
+    t.integer "deliver_fee", null: false
+    t.integer "deliver_status", null: false
+    t.integer "order_count", null: false
+    t.integer "tax", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "restocks", force: :cascade do |t|
+    t.integer "cd_id", null: false
+    t.datetime "restock_date", null: false
+    t.integer "restock_count", null: false
+    t.datetime "deleted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cd_id"
+    t.string "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "update_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
